@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<displayName>Mouf Image</displayName>
+	<shortDescription>Images handler interface for resizing, croping, or any other action</shortDescription>
+	<logo>logo.png</logo>
+	<requires>
+		<require>MoufImageInterface.php</require>
+		<require>MoufImageResource.php</require>
+		<require>filters/MoufImageFromFile.php</require>
+		<require>filters/MoufImageResize.php</require>
+		<require>filters/MoufImageOverlay.php</require>
+	</requires>
+	<dependencies>
+	</dependencies>
+</package>
