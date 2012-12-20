@@ -1,6 +1,4 @@
 <?php
-namespace Mouf\Utils\Graphics\MoufImage\Filters;
-
 /**
  * @Component
  * @author Kevin
@@ -41,10 +39,35 @@ class MoufImageOverlay implements MoufImageInterface{
 		$overlay->path = $this->overlayPath;
 		$overlay = $overlay->getResource()->resource;
 
+		$destSizeX = imagesx($moufImageResource->resource);
+		$destSizeY = imagesy($moufImageResource->resource);
+		
+		$overlaySizeX = imagesx($overlay);
+		$overlaySizeY = imagesy($overlay);
+		
+		$finalWidth = max ($destSizeX, $overlaySizeX);
+		$finalHeight = max ($destSizeY, $overlaySizeY);
+		
+		$originX = (int) (($finalWidth - $destSizeX) / 2);
+		$originY = (int) (($finalHeight - $destSizeY) / 2);
+		
+		
+		$support = imagecreatetruecolor($finalWidth, $finalHeight);
+		imagesavealpha($support, true);
+		imagealphablending($support, false);
+		$white = imagecolorallocatealpha($support, 255, 255, 255, 127);
+		imagefill($support, 0, 0, $white);
+		
+		imagecopymerge($support, $moufImageResource->resource, $originX, $originY, 0, 0, $destSizeX, $destSizeY, 100);
+		
 		imagealphablending($overlay,false);
-    	imagesavealpha($overlay,true);
+    	imagesavealpha($overlay,true);	
     	
-		imagecopymerge($moufImageResource->resource, $overlay, 0, 0, 0, 0, imagesx($overlay), imagesy($overlay), 100);
+		imagecopymerge($support, $overlay, 0, 0, 0, 0, imagesx($overlay), imagesy($overlay), 100);
+		
+		imagepng($support, "c:/Users/Kevin/Desktop/test2.png");
+		imagedestroy($support);
+		exit;
 		
 		return $moufImageResource;
 	}

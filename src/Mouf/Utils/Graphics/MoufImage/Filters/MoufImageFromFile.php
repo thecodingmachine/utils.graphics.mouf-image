@@ -1,6 +1,4 @@
 <?php
-namespace Mouf\Utils\Graphics\MoufImage\Filters;
-
 /**
  * @Component
  * @author Kevin
