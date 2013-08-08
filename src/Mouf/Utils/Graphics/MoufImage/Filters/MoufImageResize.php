@@ -1,17 +1,20 @@
 <?php
+namespace Mouf\Utils\Graphics\MoufImage\Filters;
+use Mouf\Utils\Graphics\MoufImage\MoufImageInterface;
+
 /**
  * @Component
  * @author Kevin
  *
  */
-class MoufImageResize implements MoufImageInterface{
+class MoufImageResize implements MoufImageInterface {
 
 	
 	/**
 	 * The Mouf Image that will be resized
 	 * @Property
 	 * @Compulsory
-	 * @var MoufImageInterface $source
+	 * @var MoufImageInterface
 	 */
 	public $source;
 	
@@ -19,7 +22,7 @@ class MoufImageResize implements MoufImageInterface{
 	 * The resize height in px
 	 * @Property
 	 * @Compulsory
-	 * @var int $height
+	 * @var int
 	 */
 	public $height;
 	
@@ -27,7 +30,7 @@ class MoufImageResize implements MoufImageInterface{
 	 * The resize width in px
 	 * @Property
 	 * @Compulsory
-	 * @var int $width
+	 * @var int
 	 */
 	public $width;
 	
@@ -36,15 +39,24 @@ class MoufImageResize implements MoufImageInterface{
 	 * If true, the resize will be done so the resulting image fits into the dimensions.
 	 * @Property
 	 * @Compulsory
-	 * @var boolean $keepRatio
+	 * @var boolean
 	 */
 	public $keepRatio = true;
+	
+	/**
+	 * Applies only for keepratio = true, if true, resized image will fit inside the rectangle (both dimensions will be smaller or equal to the rectangle's dimensions).
+	 * Else, the image will be resized in order to fitt the biggest ratio (on of the dimension will be the one of the rectangle, the other will be higher).
+	 * @Property
+	 * @Compulsory
+	 * @var boolean
+	 */
+	public $mustFitInside = true;
 	
 	/**
 	 * If the image may be enlarged. If not, and the image is smaller than the target rectangle, the image won't be resized.
 	 * @Property
 	 * @Compulsory
-	 * @var boolean $allowEnlarge
+	 * @var boolean
 	 */
 	public $allowEnlarge = false;
 	
@@ -115,7 +127,7 @@ class MoufImageResize implements MoufImageInterface{
 			$xRation = (float) $oWidth / $this->width;
 			$yRation = (float) $oHeight / $this->height;
 			
-			$finalRatio = max(array($xRation, $yRation));
+			$finalRatio = $this->mustFitInside ? max(array($xRation, $yRation)) : min(array($xRation, $yRation));;
 			
 			$newWidth = $oWidth / $finalRatio;
 			$newHeight = $oHeight / $finalRatio;

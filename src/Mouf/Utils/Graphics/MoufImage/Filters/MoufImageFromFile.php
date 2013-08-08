@@ -1,16 +1,21 @@
 <?php
+namespace Mouf\Utils\Graphics\MoufImage\Filters;
+use Mouf\Utils\Graphics\MoufImage\MoufImageResource;
+
+use Mouf\Utils\Graphics\MoufImage\MoufImageInterface;
+
 /**
  * @Component
  * @author Kevin
  *
  */
-class MoufImageFromFile implements MoufImageInterface{
+class MoufImageFromFile implements MoufImageInterface {
 
 	
 	/**
 	 * The absolute path of the image file
 	 * @Property
-	 * @var string $path
+	 * @var string
 	 */
 	public $path;
 	

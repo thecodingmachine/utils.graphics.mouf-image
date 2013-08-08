@@ -1,4 +1,6 @@
 <?php
+namespace Mouf\Utils\Graphics\MoufImage;
+
 class MoufImageResource{
 
 	/**
