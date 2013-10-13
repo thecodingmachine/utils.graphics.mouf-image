@@ -140,7 +140,7 @@ class MoufImageResize implements MoufImageInterface {
 				$newImageHeight = $this->height;
 			}
 		}else{
-			//Simply apply a stupid resize, whater the original image's ratio is
+			//Simply apply a stupid resize, whatever the original image's ratio is
 			$newWidth = $this->width;
 			$newHeight = $this->height;
 			$newImageWidth = $newWidth;
@@ -149,7 +149,7 @@ class MoufImageResize implements MoufImageInterface {
 		
 		$new_image = imagecreatetruecolor($newImageWidth, $newImageHeight);
 		
-		//If image id of type PNG or GIF, preserve Transprency
+		//If image id of type PNG or GIF, preserve Transparency
 		if(($imgInfo[2] == 1) || ($imgInfo[2]==3)){
 			imagealphablending($new_image, false);
 			imagesavealpha($new_image,true);
