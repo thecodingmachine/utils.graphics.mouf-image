@@ -3,7 +3,6 @@ namespace Mouf\Utils\Graphics\MoufImage\Filters;
 use Mouf\Utils\Graphics\MoufImage\MoufImageInterface;
 
 /**
- * @Component
  * @author Kevin
  *
  */
