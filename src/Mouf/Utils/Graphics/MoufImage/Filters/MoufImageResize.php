@@ -1,6 +1,7 @@
 <?php
 namespace Mouf\Utils\Graphics\MoufImage\Filters;
 use Mouf\Utils\Graphics\MoufImage\MoufImageInterface;
+use Mouf\Utils\Graphics\MoufImage\MoufImageResource;
 
 /**
  * @Component
@@ -105,7 +106,7 @@ class MoufImageResize implements MoufImageInterface {
 	
 	/**
 	 * Get the GD Image resource after effect has been applied
-	 * @return $image, the GD resource image
+	 * @return MoufImageResource
 	 */
 	public function getResource(){
 		$moufImageResource = $this->source->getResource();
