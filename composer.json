@@ -14,8 +14,9 @@
     ],
     "require": {
     	"php": ">=5.3.0",
-	"mouf/mouf-installer": ">=2.0.0-dev",
-	"ext-gd": "*"
+	    "mouf/mouf-installer": ">=2.0.0-dev",
+        "imagine/imagine": "dev-master",
+	    "ext-gd": "*"
     },
     "autoload": {
         "psr-0": {
