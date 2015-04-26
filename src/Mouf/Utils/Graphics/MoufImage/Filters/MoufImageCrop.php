@@ -56,6 +56,12 @@ class MoufImageCrop implements MoufImageInterface {
 		if ($y < 0) $y = 0;
 		
 		$dest = imagecreatetruecolor($this->width, $this->height);
+
+        //If image id of type PNG or GIF, preserve Transparency
+        if(($imgInfo[2] == 1) || ($imgInfo[2]==3)){
+            imagealphablending($dest, false);
+            imagesavealpha($dest,true);
+        }
 		
 		// Copy
 		imagecopy($dest, $imageResource, 0, 0, $x, $y, $this->width, $this->height);
